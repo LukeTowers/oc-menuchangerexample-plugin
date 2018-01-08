@@ -3,8 +3,9 @@
 use Event;
 use Backend;
 use BackendMenu;
-use Backend\Controllers\Users;
+use Backend\Controllers\Users as UsersController;
 use System\Classes\PluginBase;
+use System\Classes\SettingsManager;
 
 /**
  * UserMenu Plugin Information File
@@ -50,7 +51,11 @@ class Plugin extends PluginBase
                 return;
             }
 
-            BackendMenu::setContext('LukeTowers.Users', 'users');
+            BackendMenu::setContext('LukeTowers.MenuChangerExample', 'users');
+        });
+
+        SettingsManager::instance()->registerCallback(function ($manager) {
+            $manager->removeSettingItem('October.System', 'administrators');
         });
     }
 }
